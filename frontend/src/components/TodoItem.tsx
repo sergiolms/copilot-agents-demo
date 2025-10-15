@@ -8,14 +8,22 @@ interface Props {
 
 export const TodoItem: React.FC<Props> = ({ todo, onToggle }) => {
   return (
-  <li>
+    <li className="todo-item group">
       <input
         type="checkbox"
+        id={`toggle-${todo.id}`}
         checked={todo.done}
         onChange={() => onToggle(todo)}
-        aria-label={`Toggle todo ${todo.title}`}
+        aria-labelledby={`toggle-${todo.id}`}
+        className="todo-checkbox"
       />
-      <span className={todo.done ? 'done' : undefined}>{todo.title}</span>
+      <label htmlFor={`toggle-${todo.id}`} className={`flex-1 text-ghost-white font-medium transition-all cursor-pointer ${
+        todo.done 
+          ? 'line-through text-gray-500 opacity-60' 
+          : 'group-hover:text-spooky-yellow'
+      }`}>
+        {todo.done ? '💀' : '🦇'} {todo.title}
+    </label>
     </li>
   );
 };

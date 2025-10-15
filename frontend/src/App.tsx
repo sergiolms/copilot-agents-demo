@@ -69,15 +69,35 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="app-container">
-      <h1>Todos</h1>
-      <AddTodoForm onAdd={handleAdd} />
-      <div className="toolbar">
-        <button onClick={handleRefresh} disabled={refreshing || loading}>Refresh</button>
-        {refreshing && <span>Refreshing...</span>}
+    <>
+      {/* Spider Web at Top */}
+      <div className="spider-web">🕸️</div>
+      
+      {/* Dropping Spider */}
+      <div className="spider-container">
+        <div className="spider-line"></div>
+        <div className="spider">🕷️</div>
       </div>
-      <TodoList todos={todos} onToggle={handleToggle} loading={loading} error={error} />
-    </div>
+
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 relative z-10">
+        <h1 className="text-5xl md:text-6xl font-spooky text-center mb-16 text-spooky-yellow animate-glow">
+          🎃 Haunted TO DO list 🎃
+        </h1>
+        <div className="spooky-card max-w-2xl w-full p-8 pb-12 animate-float-slow">
+          <AddTodoForm onAdd={handleAdd} />
+          <div className="flex gap-3 mb-4">
+            <button 
+              onClick={handleRefresh} 
+              disabled={refreshing || loading}
+              className="spooky-button-secondary"
+            >
+              {refreshing ? '🔄 Refreshing...' : '🔄 Refresh'}
+            </button>
+          </div>
+          <TodoList todos={todos} onToggle={handleToggle} loading={loading} error={error} />
+        </div>
+      </div>
+    </>
   );
 };
 

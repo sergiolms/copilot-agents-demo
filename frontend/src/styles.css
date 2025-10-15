@@ -1,56 +1,127 @@
-body {
-  font-family: system-ui, sans-serif;
-  background: #f7f7f7;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-spooky-dark via-spooky-purple to-spooky-dark min-h-screen m-0 p-0 overflow-x-hidden;
+  }
 }
 
-.app-container {
-  max-width: 480px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 1.5rem 1.25rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.08);
+@layer components {
+
+  /* Spider Web */
+  .spider-web {
+    position: fixed;
+    top: -20px;
+    right: -5px;
+    font-size: 4rem;
+    z-index: 100;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 10px rgba(248, 248, 255, 0.5));
+    pointer-events: none;
+  }
+
+  /* Dropping Spider */
+  .spider-container {
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    z-index: 99;
+    pointer-events: none;
+  }
+
+  .spider {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+    animation: spiderDrop 4s ease-in-out 10s infinite;
+    margin-top: -70px;
+  }
+
+  .spider-line {
+    position: absolute;
+    width: 2px;
+    background:rgba(200, 200, 200, 0.3);
+    top: 0px;
+    z-index: -1;
+    left: 52%;
+    transform: translateX(-50%);
+    height: 0;
+    animation: lineExtend 4s ease-in-out 10s infinite;
+  }
+
+  @keyframes spiderDrop {
+    20% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(300px);
+    }
+    99% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50px);
+    }
+  }
+
+  @keyframes lineExtend {
+    20% {
+      height: 0;
+    }
+    50% {
+      height: 270px;
+    }
+    100% {
+      height: 0;
+    }
+  }
+
+  .spooky-card {
+    @apply bg-gradient-to-br from-gray-900/75 to-gray-800/10 backdrop-blur-sm relative;
+    border-radius: 4% 4% 20% 10% / 30% 30% 10% 20%;
+    box-shadow: 
+      0 0 60px rgba(255, 255, 255, 0.05),
+      0 0 80px rgba(255, 255, 255, 0.04),
+      inset 0 0 80px rgba(255, 255, 255, 0.03);
+    position: relative;
+  }
+
+  .spooky-card::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    width: 80%;
+    height: 40px;
+    background: radial-gradient(ellipse at center, 
+      rgba(255, 255, 255, 0.05) 0%, 
+      rgba(255, 255, 255, 0.02) 40%, 
+      transparent 70%);
+    border-radius: 50%;
+    filter: blur(10px);
+  }
+
+
+  .spooky-input {
+    @apply bg-gray-800/50 border-2 border-spooky-purple/50 text-ghost-white placeholder-gray-500 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-spooky-orange focus:border-transparent transition-all;
+  }
+
+  .spooky-button {
+    @apply bg-gradient-to-r from-spooky-orange to-red-600 hover:from-red-600 hover:to-spooky-orange text-white font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-spooky-orange/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+
+  .spooky-button-secondary {
+    @apply bg-gray-700/80 hover:bg-gray-600 text-ghost-white border border-gray-600 px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/30;
+  }
+
+  .todo-item {
+    @apply flex items-center gap-3 p-3 rounded-lg bg-gray-800/30 border border-gray-700/50 cursor-pointer select-none hover:bg-gray-700/40 hover:border-spooky-purple/50 transition-all duration-300;
+  }
+
+  .todo-checkbox {
+    @apply w-5 h-5 rounded border-2 border-spooky-orange bg-gray-800 checked:bg-spooky-orange checked:border-spooky-orange focus:ring-2 focus:ring-spooky-orange/50 cursor-pointer transition-all;
+  }
 }
-
-form.add-todo-form {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-form.add-todo-form input[type=text] {
-  flex: 1;
-  padding: 0.5rem 0.625rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.95rem;
-}
-
-form.add-todo-form button {
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  padding: 0.55rem 0.9rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-form.add-todo-form button:disabled { opacity: 0.5; cursor: not-allowed; }
-
-.error-text { color: #dc2626; font-size: 0.8rem; align-self: center; }
-
-.toolbar { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
-
-.toolbar button { background: #e5e7eb; border: 1px solid #d1d5db; padding: 0.4rem 0.75rem; border-radius: 6px; cursor: pointer; }
-
-ul.todo-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
-
-ul.todo-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.35rem; border-radius: 6px; }
-ul.todo-list li:hover { background: #f1f5f9; }
-
-ul.todo-list li span.done { text-decoration: line-through; color: #64748b; }
-
-.status-msg { font-size: 0.85rem; color: #64748b; }

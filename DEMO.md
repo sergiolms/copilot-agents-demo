@@ -30,6 +30,10 @@ Create a simple React Todo List app that uses the backend endpoints. It should l
 ## 5. Refinement
 
 ```markdown
+Let's polish the UI. Use Tailwind to create a spooky halloween theme for the TODO app. Add a random time event where a spiderweb emoji appears fixed on top, and a spider emoji drops leaving a line as if it was a webshot. Make sure all the text in the theme has the correct contrast. 
+```
+
+```markdown
 Add input validation using Zod.
 ```
 
