@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
+import todoRoutes from './routes/todo.routes.js';
 
 const app = express();
-const PORT = 3000;
 
 // Middleware
 app.use(express.json());
@@ -11,9 +11,10 @@ app.get('/api/health', (req: Request, res: Response) => {
   res.json({ ok: true });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// API routes
+app.use('/api', todoRoutes);
+
+// App is exported without starting the server
+// Server is started in server.ts
 
 export default app;

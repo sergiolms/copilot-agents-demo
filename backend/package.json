@@ -2,7 +2,7 @@
   "name": "todo-backend",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/app.ts",
+    "dev": "tsx src/server.ts",
     "build": "tsc",
     "lint": "eslint .",
     "test": "vitest --run"
