@@ -1,0 +1,56 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 480px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 1.5rem 1.25rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.08);
+}
+
+form.add-todo-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+form.add-todo-form input[type=text] {
+  flex: 1;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+form.add-todo-form button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+form.add-todo-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.error-text { color: #dc2626; font-size: 0.8rem; align-self: center; }
+
+.toolbar { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+
+.toolbar button { background: #e5e7eb; border: 1px solid #d1d5db; padding: 0.4rem 0.75rem; border-radius: 6px; cursor: pointer; }
+
+ul.todo-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+
+ul.todo-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.35rem; border-radius: 6px; }
+ul.todo-list li:hover { background: #f1f5f9; }
+
+ul.todo-list li span.done { text-decoration: line-through; color: #64748b; }
+
+.status-msg { font-size: 0.85rem; color: #64748b; }
